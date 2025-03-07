@@ -99,4 +99,6 @@ function generateJwt(user){
     const token= jwt.sign({name:user},'abcd',{expiresIn:2000})
     return token
 }
-module.exports=app
+app.listen(3000, () => {
+    console.log('started')
+})
