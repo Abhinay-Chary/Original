@@ -8,6 +8,7 @@ const bcrypt= require('bcrypt');
 const jwt=require('jsonwebtoken');
 const users = require('./users/users');
 const Fruit = require('./fruits/addFruits');
+const cart= require('./cartApi/cart')
 mongoose.connect('mongodb+srv://abhinaychary1:Abhi%40sep27@cluster.vyskc.mongodb.net/').then(x=>{
     console.log('connected')
 }).catch(e=>{
@@ -19,6 +20,37 @@ app.use(express.json());
 app.use(cors());
 
 //  mongoose.connect()
+app.get('/getCart/:id',async(req,res)=>{
+    const id=req.params.id;
+    console.log('abhi',id)
+let a= await cart.findOne({userName:id});
+console.log(a);
+res.json({data:a})
+})
+app.post('/saveForLater',async(req,res)=>{
+    let {userName,obj}= req.body;
+    console.log(req.body)
+  let found=await cart.findOne({userName:userName});
+  console.log(found)
+  if(found){
+   let x=  await cart.updateOne({userName:userName},{cart:obj},{new:true});
+   console.log(x)
+    res.json({data:x,message:'saved successfully'})
+
+  }else{
+    const ca= new cart({
+        userName:userName,
+        cart:obj,
+        
+    }
+   );
+  let y= await ca.save() ;
+  console.log(y)
+   res.json({data:y,message:'saved'})
+
+  }
+
+})
 app.post('/signUp', async(req, res) => {
     console.log('signUp');
    

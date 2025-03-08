@@ -1,7 +1,8 @@
 
 const mongoose=require('mongoose');
  cartSchema=  mongoose.Schema({
-
-    name:String,
+      userName:String,
+    cart:Object
     
  })
+ module.exports=  mongoose.model('Cart',cartSchema)
