@@ -71,7 +71,7 @@ app.post('/login',async (req, res) => {
     
     //let user= await tempUsers.find(user=>user.name===name);
     user =await users.findOne({name:name});
-    // console.log(user)
+    console.log(user)
     if(user){  
         const isMatch=await bcrypt.compare(password,user.password);
         if(isMatch){
