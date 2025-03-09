@@ -65,6 +65,11 @@ app.post('/signUp', async(req, res) => {
     res.json('user signedUp').status(201);
    
 });
+app.get('/allUsers',async(req,res)=>{
+    console.log('all')
+    let user=await users.find();
+    res.json({userData:user})
+})
 app.post('/login',async (req, res) => {
     console.log('login');
     let {name,password}=req.body;
