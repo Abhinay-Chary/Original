@@ -11,8 +11,7 @@ const jwt = require('jsonwebtoken');
 const users = require('./users/users');
 const Fruit = require('./fruits/addFruits');
 const cart = require('./cartApi/cart');
-require('dotenv').config();
-console.log("ss", process.env.MONGO_URL);
+
 // mongodb+srv://abhinaychary1:<db_password>@cluster.vyskc.mongodb.net/?appName=Cluster
 mongoose.connect("mongodb+srv://abhinaychary1:Abhi%40sep27@cluster.vyskc.mongodb.net/?appName=Cluster").then(x => {
     console.log('connected')
@@ -113,7 +112,6 @@ app.post('/deleteUser', async (req, res) => {
         const foundUser = await users.findOne({ name: req.body.name });
         if (foundUser) {
             const deleteObj = await users.deleteMany({});
-            console.log(re);
             res.json({ m: deleteObj })
 
         }
