@@ -151,7 +151,7 @@ app.post('/login', async (req, res) => {
             message: 'Login successful',
             user: user.name,
             token,
-            expiresIn: 10
+            expiresIn: '2m'
         });
 
     } catch (err) {
