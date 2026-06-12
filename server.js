@@ -1,5 +1,6 @@
 const dns = require('node:dns');
 dns.setServers(['8.8.8.8', '1.1.1.1']);
+require('dotenv').config();
 const express = require('express');
 const app = express();
 const bp = require('body-parser');
@@ -13,7 +14,7 @@ const Fruit = require('./fruits/addFruits');
 const cart = require('./cartApi/cart');
 
 // mongodb+srv://abhinaychary1:<db_password>@cluster.vyskc.mongodb.net/?appName=Cluster
-mongoose.connect("mongodb+srv://abhinaychary1:Abhi%40sep27@cluster.vyskc.mongodb.net/?appName=Cluster").then(x => {
+mongoose.connect( process.env.MONGO_URL).then(x => {
     console.log('connected')
 }).catch(e => {
     console.log(e)
