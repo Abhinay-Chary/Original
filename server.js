@@ -213,7 +213,7 @@ function verifyJwt(req, res, next) {
 
 
 function generateJwt(user) {
-    const token = jwt.sign({ name: user }, 'abcd', { expiresIn: 2000 })
+    const token = jwt.sign({ name: user }, 'abcd', { expiresIn: '1m' })
     return token
 }
 app.listen(3000, () => {
